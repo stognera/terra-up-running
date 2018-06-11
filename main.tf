@@ -7,7 +7,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "adam-terraform-up-and-running-state-v2"
-    key            = "global/s3/terraform.tfstate"
+    key            = "root/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = "true"
     dynamodb_table = "terraform_statelock"
