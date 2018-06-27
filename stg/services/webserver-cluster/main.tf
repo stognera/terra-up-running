@@ -91,12 +91,22 @@ resource "aws_elb" "example" {
   }
 }
 
-data "terraform_remote_state" "db" {
-  backend = "s3"
+#data "terraform_remote_state" "db" {
+#  backend = "s3"
 
-  config {
-    bucket         = "${var.db_remote_state_bucket}"
-    key            = "${var.db_remote_state_key}"
+#  config {
+#    bucket         = "${var.db_remote_state_bucket}"
+#    key            = "${var.db_remote_state_key}"
+#    region         = "us-east-1"
+#    encrypt        = "true"
+#    dynamodb_table = "terraform_statelock"
+#  }
+#}
+
+terraform {
+  backend "s3" {
+    bucket         = "adam-terraform-up-and-running-state-v2"
+    key            = "global/webserver-cluster/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = "true"
     dynamodb_table = "terraform_statelock"
